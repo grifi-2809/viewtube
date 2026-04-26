@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewTube</title>
+    <link rel="icon" type="image/x-icon" href="/ViewTube.ico">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: #0f0f0f; color: white; display: flex; flex-direction: column; height: 100vh; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: #0f0f0f; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #303030; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-decoration: none; }
+        .main-container { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 240px; background-color: #0f0f0f; padding: 20px 10px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; border-right: 1px solid #303030; }
+        .nav-item { padding: 10px 15px; border-radius: 10px; cursor: pointer; }
+        .nav-item:hover { background-color: #272727; }
+        .video-feed { flex: 1; padding: 20px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; align-content: start; }
+        .video-link { text-decoration: none; color: inherit; display: block; }
+        .video-card { display: flex; flex-direction: column; gap: 10px; transition: transform 0.2s; }
+        .video-card:hover { transform: scale(1.02); }
+        .thumbnail { width: 100%; aspect-ratio: 16/9; background-color: #272727; border-radius: 12px; object-fit: cover; pointer-events: none; }
+        .video-info { display: flex; gap: 12px; margin-top: 5px; }
+        .channel-avatar { width: 36px; height: 36px; border-radius: 50%; background-color: #888; flex-shrink: 0; }
+        .video-details { display: flex; flex-direction: column; }
+        .video-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; line-height: 1.4; color: #fff; }
+        .channel-name, .video-stats { font-size: 0.85rem; color: #aaa; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">▶ ViewTube</a>
+    </nav>
+    <div class="main-container">
+
+        <main class="video-feed" id="video-feed"></main>
+    </div>
+
+    <script src="data.js"></script>
+    
+    <script>
+        const videoFeed = document.getElementById('video-feed');
+
+        myVideos.forEach(video => {
+            let visualElement = video.thumbnail !== "" 
+                ? `<img src="${video.thumbnail}" class="thumbnail">` 
+                : `<video src="${video.videoPath}#t=1" class="thumbnail" preload="metadata" muted></video>`;
+
+            // NOTE: The link now points to watch.html and passes the video ID!
+            const videoHTML = `
+                <a href="watch.html?id=${video.id}" class="video-link">
+                    <div class="video-card">
+                        ${visualElement}
+                        <div class="video-info">
+                            <div class="channel-avatar"></div>
+                            <div class="video-details">
+                                <h3 class="video-title">${video.title}</h3>
+                                <div class="channel-name">${video.channel}</div>
+                                <div class="video-stats">${video.views} • ${video.time}</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+            videoFeed.innerHTML += videoHTML;
+        });
+    </script>
+</body>
+</html>

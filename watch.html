@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watching Video</title>
+    <style>
+
+        #description {
+             white-space: pre-wrap;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: #0f0f0f; color: white; display: flex; flex-direction: column; height: 100vh; overflow-x: hidden; }
+        
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: #0f0f0f; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #303030; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #fff; text-decoration: none; }
+        
+        /* Watch Layout */
+        .watch-container { display: flex; padding: 20px; gap: 24px; max-width: 1600px; margin: 0 auto; width: 100%; }
+        .primary-column { flex: 1; max-width: 1000px; }
+        .secondary-column { width: 400px; display: flex; flex-direction: column; }
+
+        /* Video Player */
+        .video-player-wrapper { width: 100%; aspect-ratio: 16/9; background-color: black; border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
+        video { width: 100%; height: 100%; outline: none; }
+
+        /* Main Video Info */
+        .watch-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 10px; }
+        .watch-channel-bar { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .channel-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #888; }
+        .description-box { background-color: #272727; padding: 15px; border-radius: 12px; font-size: 0.9rem; line-height: 1.5; }
+        .desc-views { font-weight: bold; margin-bottom: 5px; display: block; }
+
+        /* =========================================
+           MODERN FUNKY BUTTONS (LIKE & SUBSCRIBE)
+           ========================================= */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+            align-items: center;
+        }
+
+        /* 1. The Funky Like Button */
+        .like-btn {
+            background-color: #272727;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .like-btn:hover { background-color: #b4b4b4; }
+
+        .like-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* The Liked State */
+        .like-btn.liked {
+            color: #ff004c;
+            border-color: #ff004c;
+            background-color: rgba(255, 0, 76, 0.1);
+        }
+
+        .like-btn.liked svg {
+            fill: #ff004c;
+            stroke: #ff004c;
+            animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* 2. The Funky Subscribe Button */
+        .subscribe-btn {
+            background: linear-gradient(45deg, #ff0000, #ff4e45);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            user-select: none;
+        }
+
+        .subscribe-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+
+        /* The Subscribed State */
+        .subscribe-btn.subscribed {
+            background: #f1f1f1; /* Thick white/light gray */
+            color: #0f0f0f;      /* Dark text so you can read it */
+            box-shadow: none;
+        }
+        
+        .subscribe-btn.subscribed:hover {
+            transform: scale(1);
+            background: #e5e5e5; /* Dims very slightly when hovered */
+        }
+
+        /* 3. The Sparkle Animation Effects */
+        .sparkle-burst {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .animate-sparkle .sparkle-burst {
+            animation: explode 0.6s ease-out forwards;
+        }
+
+        .animate-sub-pop {
+            animation: subPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Keyframes */
+        @keyframes bounceIn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5) rotate(-15deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes subPop {
+            0% { transform: scale(1); }
+            40% { transform: scale(0.9); }
+            70% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes explode {
+            0% { 
+                opacity: 1;
+                /* Creates 4 outward bursting particles using box-shadow */
+                box-shadow: 0 -20px 0 2px #ff004c, 20px 0 0 2px gold, 0 20px 0 2px #ff004c, -20px 0 0 2px gold; 
+            }
+            100% { 
+                opacity: 0;
+                box-shadow: 0 -50px 0 0px transparent, 50px 0 0 0px transparent, 0 50px 0 0px transparent, -50px 0 0 0px transparent; 
+            }
+        }
+
+        /* UP NEXT: Suggested Videos List */
+        .suggested-list { display: flex; flex-direction: column; gap: 10px; }
+        .suggested-card { display: flex; gap: 10px; text-decoration: none; color: inherit; padding: 5px; border-radius: 8px; transition: background 0.2s; }
+        .suggested-card:hover { background-color: #272727; }
+        .suggested-thumb-wrapper { width: 168px; flex-shrink: 0; }
+        .suggested-thumbnail { width: 100%; aspect-ratio: 16/9; background-color: #272727; border-radius: 8px; object-fit: cover; pointer-events: none; }
+        .suggested-details { display: flex; flex-direction: column; padding-right: 5px; }
+        .suggested-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .suggested-channel, .suggested-stats { font-size: 0.75rem; color: #aaa; }
+        #error-message { display: none; text-align: center; margin-top: 50px; color: #ff4e45; font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">▶ ViewTube</a>
+    </nav>
+
+    <h1 id="error-message">Video not found! Go back to Home.</h1>
+
+    <div class="watch-container" id="watch-content">
+        <div class="primary-column">
+            <div class="video-player-wrapper">
+                <video id="player" controls autoplay></video>
+            </div>
+            
+            <h1 class="watch-title" id="title">Loading...</h1>
+            <div class="watch-channel-bar">
+                <div class="channel-avatar"></div>
+                <div>
+                    <div id="channel" style="font-weight: bold;">Channel Name</div>
+                    <div style="font-size: 0.8rem; color: #aaa;">1M subscribers</div>
+                </div>
+                
+                <div class="action-buttons">
+                    
+                        <button class="like-btn" id="like-btn">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                        </svg>
+                        <span id="like-count">1.2K</span>
+                        <div class="sparkle-burst"></div> </button>
+                        
+                        <div class="sparkle-burst"></div> </button>
+                    
+                    <button class="subscribe-btn" id="subscribe-btn">
+                        Subscribe
+                        <div class="sparkle-burst"></div> </button>
+                </div>
+            </div>
+
+            <div class="description-box">
+                <span class="desc-views" id="views-time">... views • ... ago</span>
+                <p id="description">Description goes here.</p>
+            </div>
+        </div>
+        
+        <div class="secondary-column">
+            <div id="suggested-videos" class="suggested-list"></div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('id');
+        const currentVideo = myVideos.find(v => v.id === videoId);
+
+        if (currentVideo) {
+            document.getElementById('player').src = currentVideo.videoPath;
+            document.getElementById('title').textContent = currentVideo.title;
+            document.getElementById('channel').textContent = currentVideo.channel;
+            document.getElementById('views-time').textContent = `${currentVideo.views} • ${currentVideo.time}`;
+            document.getElementById('description').textContent = currentVideo.description;
+            document.title = currentVideo.title + " - ViewTube";
+
+            // SUGGESTED VIDEOS
+            const suggestedContainer = document.getElementById('suggested-videos');
+            const suggestedVideos = myVideos.filter(v => v.id !== videoId);
+
+            suggestedVideos.forEach(video => {
+                let visualElement = video.thumbnail !== "" 
+                    ? `<img src="${video.thumbnail}" class="suggested-thumbnail">` 
+                    : `<video src="${video.videoPath}#t=1" class="suggested-thumbnail" preload="metadata" muted></video>`;
+
+                const suggestedHTML = `
+                    <a href="watch.html?id=${video.id}" class="suggested-card">
+                        <div class="suggested-thumb-wrapper">${visualElement}</div>
+                        <div class="suggested-details">
+                            <div class="suggested-title">${video.title}</div>
+                            <div class="suggested-channel">${video.channel}</div>
+                            <div class="suggested-stats">${video.views} • ${video.time}</div>
+                        </div>
+                    </a>
+                `;
+                suggestedContainer.innerHTML += suggestedHTML;
+            });
+
+            // ==========================================
+            // BUTTON INTERACTION LOGIC
+            // ==========================================
+            const likeBtn = document.getElementById('like-btn');
+            const likeCount = document.getElementById('like-count');
+            const subBtn = document.getElementById('subscribe-btn');
+
+            // Handle Like Click
+            likeBtn.addEventListener('click', () => {
+                // Remove animation class so it can be re-triggered
+                likeBtn.classList.remove('animate-sparkle');
+                
+                // Force a browser reflow to reset the animation
+                void likeBtn.offsetWidth; 
+
+                // Toggle the liked state
+                const isLiked = likeBtn.classList.toggle('liked');
+                
+                if (isLiked) {
+                    likeBtn.classList.add('animate-sparkle'); // Trigger sparkle
+                    likeCount.textContent = "1.2K+1"; // Update dummy number
+                } else {
+                    likeCount.textContent = "1.2K"; // Reset number
+                }
+            });
+
+            // Handle Subscribe Click
+            subBtn.addEventListener('click', () => {
+                subBtn.classList.remove('animate-sub-pop', 'animate-sparkle');
+                void subBtn.offsetWidth;
+
+                const isSubbed = subBtn.classList.toggle('subscribed');
+
+                if (isSubbed) {
+                    subBtn.textContent = "Subscribed";
+                } else {
+                    subBtn.textContent = "Subscribe";
+                    // Only trigger the big funky pop and sparkles when SUBSCRIBING
+                    subBtn.classList.add('animate-sub-pop', 'animate-sparkle');
+                    // Ensure the hidden sparkle div stays inside the button
+                    subBtn.innerHTML += '<div class="sparkle-burst"></div>'; 
+                }
+            });
+
+        } else {
+            document.getElementById('watch-content').style.display = 'none';
+            document.getElementById('error-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
