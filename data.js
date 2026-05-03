@@ -9,7 +9,7 @@ const myVideos = [
         views: "11.1m views",
         time: "1 hour ago",
         videoPath: "./videos/horse.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/horse.png", 
         
         description: defaultDesc
     
@@ -156,7 +156,7 @@ Attribution 4.0 International (CC BY 4.0)
         views: "2m views",
         time: "12 years ago",
         videoPath: "./videos/countdown.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/countdown.png", 
         
         description: defaultDesc
     
@@ -168,7 +168,7 @@ Attribution 4.0 International (CC BY 4.0)
         views: "3.3m views",
         time: "3 years ago",
         videoPath: "./videos/orang.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/orang.png", 
         
         description: `#LPGA #Ten #PGATour
 Orangutan Driving Golf Cart`
@@ -181,7 +181,7 @@ Orangutan Driving Golf Cart`
         views: "10m views",
         time: "3 years ago",
         videoPath: "./videos/grumpy.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/grumpy.png", 
         
         description: `#LPGA #Ten #PGATour
 Orangutan Driving Golf Cart`
@@ -194,7 +194,7 @@ Orangutan Driving Golf Cart`
         views: "6.1m views",
         time: "10 years ago",
         videoPath: "./videos/penguin.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/penguin.png", 
         
         description: `#ANTARCTICA
 Watch penguins as they make the long long trek across the ice to come say  hello for a short while. 
@@ -209,7 +209,7 @@ Curious, clumsy, belly slide, hey penguin, nice suit!`
         views: "70m views",
         time: "8 years ago",
         videoPath: "./videos/smallcat.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/cat.png", 
         
         description: `#bbc
         Subscribe and 🔔 to the BBC 👉 https://bit.ly/BBCYouTubeSub
@@ -225,7 +225,7 @@ Big Cats | BBC`
         views: "21m views",
         time: "7 years ago",
         videoPath: "./videos/hillclimb.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/hillclimb.png", 
         
         description: `Final run at the 2018 FIA Hillclimb Masters held at Gubbio, Italy.  Silver medal winning run.`
     
@@ -237,7 +237,7 @@ Big Cats | BBC`
         views: "1.5m views",
         time: "2 years ago",
         videoPath: "./videos/mclaren.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/mclaren.png", 
         
         description: `I had an amazing time shooting this McLaren P1. What a spectacular vehicle… special thanks to Zoe for helping out and being the camera car driver.
 
@@ -251,7 +251,7 @@ Shot by: Ricky Blackwell`
         views: "772k views",
         time: "1 years ago",
         videoPath: "./videos/bird.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/bird.png", 
         
         description: `Why do some birds bob their heads when they walk? For many birds, head bobbing accompanies walking, giving them a rather distinctive appearance. It would seem as if they do this to keep equilibrium... or is it for another reason? 
 `
@@ -264,7 +264,7 @@ Shot by: Ricky Blackwell`
         views: "772k views",
         time: "1 years ago",
         videoPath: "./videos/bob.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/bob.png", 
         
         description: ``
     
@@ -276,7 +276,7 @@ Shot by: Ricky Blackwell`
         views: "34k views",
         time: "2 weeks ago",
         videoPath: "./videos/fly.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/fly.png", 
         
         description: `This is my favorite short jump around Lake Garda, Italy.
 It’s a technical wingsuit line where it’s possible to fly by a road corner.
@@ -290,7 +290,7 @@ This time, a bunch of people were waiting there to witness the wingsuit fly-by i
         views: "3.4m views",
         time: "11 years ago",
         videoPath: "./videos/everest.mp4", 
-        thumbnail: "", 
+        thumbnail: "./thumbnails/everest.png", 
         
         description: `From basecamp to the summit of Mt. Everest. All in 3 minutes. 
 
