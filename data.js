@@ -21,7 +21,7 @@ const myVideos = [
         views: "6.9m views",
         time: "18 Apr 2010",
         videoPath: "./videos/dove.mp4",
-        thumbnail: "",
+        thumbnail: "./thumbnails/dove.png",
         description: `Quick video of a Mourning Dove Coo. High quality video and sound.
 
 Sarcastic answers to frequently asked questions:
@@ -39,7 +39,7 @@ Sarcastic answers to frequently asked questions:
         views: "133 views",
         time: "1 year ago",
         videoPath: "./videos/bodycam.mp4",
-        thumbnail: "",
+        thumbnail: "./thumbnails/bodycam.png",
         description: `Headphones recomended for this video
         
         
@@ -54,7 +54,7 @@ Sarcastic answers to frequently asked questions:
         views: "4.20m views",
         time: "7 years ago",
         videoPath: "./videos/owl.mp4",
-        thumbnail: "",
+        thumbnail: "./thumbnails/owl.png",
         description: `Owls are one of the most iconic and recognisable group of birds, with a firm grounding in culture and mythology worldwide. Discover which species can be found in North America and the unique sounds they make.
 
 
