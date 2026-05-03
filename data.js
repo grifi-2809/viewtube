@@ -151,14 +151,155 @@ Attribution 4.0 International (CC BY 4.0)
     },
     {
         id: "vid_5", // A unique ID for the URL
-        title: "CountDown",
-        channel: "Arif Hossain",
-        views: "10 views",
-        time: "1 hour ago",
+        title: "Countdown",
+        channel: "unknowngamer244",
+        views: "2m views",
+        time: "12 years ago",
         videoPath: "./videos/countdown.mp4", 
         thumbnail: "", 
         
         description: defaultDesc
+    
+    },
+    {
+        id: "vid_6", // A unique ID for the URL
+        title: "Orangutan Driving Golf Cart",
+        channel: "TenGolf",
+        views: "3.3m views",
+        time: "3 years ago",
+        videoPath: "./videos/orang.mp4", 
+        thumbnail: "", 
+        
+        description: `#LPGA #Ten #PGATour
+Orangutan Driving Golf Cart`
+    
+    },
+    {
+        id: "vid_7", // A unique ID for the URL
+        title: "World’s Grumpiest Cat I Frozen Planet II I BBC",
+        channel: "BBC",
+        views: "10m views",
+        time: "3 years ago",
+        videoPath: "./videos/grumpy.mp4", 
+        thumbnail: "", 
+        
+        description: `#LPGA #Ten #PGATour
+Orangutan Driving Golf Cart`
+    
+    },
+    {
+        id: "vid_8", // A unique ID for the URL
+        title: "The Curiosity of a Penguin",
+        channel: "casey marwine",
+        views: "6.1m views",
+        time: "10 years ago",
+        videoPath: "./videos/penguin.mp4", 
+        thumbnail: "", 
+        
+        description: `#ANTARCTICA
+Watch penguins as they make the long long trek across the ice to come say  hello for a short while. 
+
+Curious, clumsy, belly slide, hey penguin, nice suit!`
+    
+    },
+    {
+        id: "vid_9", // A unique ID for the URL
+        title: "World's smallest cat 🐈- BBC",
+        channel: "BBC",
+        views: "70m views",
+        time: "8 years ago",
+        videoPath: "./videos/smallcat.mp4", 
+        thumbnail: "", 
+        
+        description: `#bbc
+        Subscribe and 🔔 to the BBC 👉 https://bit.ly/BBCYouTubeSub
+Watch the BBC first on iPlayer 👉 https://bbc.in/iPlayer-Home Programme website: http://bbc.in/2CHzXJj A rusty spotted cat, the world's smallest cat, explores his forest home in Sri Lanka, but his natural curiosity is destined to get him into a spot of trouble.
+
+Big Cats | BBC`
+    
+    },
+    {
+        id: "vid_10", // A unique ID for the URL
+        title: "Scott Moran FIA Hillclimb Masters 2018. Gubbio, Italy.",
+        channel: "Scott Moran",
+        views: "21m views",
+        time: "7 years ago",
+        videoPath: "./videos/hillclimb.mp4", 
+        thumbnail: "", 
+        
+        description: `Final run at the 2018 FIA Hillclimb Masters held at Gubbio, Italy.  Silver medal winning run.`
+    
+    },
+    {
+        id: "vid_11", // A unique ID for the URL
+        title: "McLaren P1 on Backroads",
+        channel: "Ricky Blackwell",
+        views: "1.5m views",
+        time: "2 years ago",
+        videoPath: "./videos/mclaren.mp4", 
+        thumbnail: "", 
+        
+        description: `I had an amazing time shooting this McLaren P1. What a spectacular vehicle… special thanks to Zoe for helping out and being the camera car driver.
+
+Shot by: Ricky Blackwell`
+    
+    },
+    {
+        id: "vid_12", // A unique ID for the URL
+        title: "Why do birds bob their heads when they walk?",
+        channel: "All Things Birdie",
+        views: "772k views",
+        time: "1 years ago",
+        videoPath: "./videos/bird.mp4", 
+        thumbnail: "", 
+        
+        description: `Why do some birds bob their heads when they walk? For many birds, head bobbing accompanies walking, giving them a rather distinctive appearance. It would seem as if they do this to keep equilibrium... or is it for another reason? 
+`
+    
+    },
+    {
+        id: "vid_12", // A unique ID for the URL
+        title: "Bob Ross - Happy Trees",
+        channel: "Laura Staloch M.S., M.Ed.",
+        views: "772k views",
+        time: "1 years ago",
+        videoPath: "./videos/bob.mp4", 
+        thumbnail: "", 
+        
+        description: ``
+    
+    },
+    {
+        id: "vid_13", // A unique ID for the URL
+        title: " Precision Wingsuit Road Fly-By | With Live Stats!",
+        channel: "JoHannes | Wingsuit ",
+        views: "34k views",
+        time: "2 weeks ago",
+        videoPath: "./videos/fly.mp4", 
+        thumbnail: "", 
+        
+        description: `This is my favorite short jump around Lake Garda, Italy.
+It’s a technical wingsuit line where it’s possible to fly by a road corner.
+This time, a bunch of people were waiting there to witness the wingsuit fly-by in person.`
+    
+    },
+    {
+        id: "vid_14", // A unique ID for the URL
+        title: "Everest - On the Top",
+        channel: "JoHannes | Wingsuit ",
+        views: "3.4m views",
+        time: "11 years ago",
+        videoPath: "./videos/everest.mp4", 
+        thumbnail: "", 
+        
+        description: `From basecamp to the summit of Mt. Everest. All in 3 minutes. 
+
+For work or licensing inquires find me at www.eliasaikaly.com
+
+Shot by Elia Saikaly
+Camera Assistant Pasang Kaji Sherpa
+
+Music by: Audio Machine`
     
     }
 ];
