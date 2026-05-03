@@ -37,15 +37,24 @@
 
     <script src="data.js"></script>
     
+    <!-- Import our central database -->
+    <script src="data.js"></script>
+    
     <script>
         const videoFeed = document.getElementById('video-feed');
 
+        // 1. Render all the HTML first
         myVideos.forEach(video => {
-            let visualElement = video.thumbnail !== "" 
-                ? `<img src="${video.thumbnail}" class="thumbnail">` 
-                : `<video src="${video.videoPath}#t=1" class="thumbnail" preload="metadata" muted></video>`;
+            let visualElement = '';
+            
+            if (video.thumbnail !== "") {
+                visualElement = `<img src="${video.thumbnail}" class="thumbnail">`;
+            } else {
+                // THE UPGRADE: Notice we changed 'src' to 'data-src' and added the 'lazy-video' class.
+                // We also set preload="none" so the browser doesn't download anything yet.
+                visualElement = `<video data-src="${video.videoPath}#t=1" class="thumbnail lazy-video" preload="none" muted></video>`;
+            }
 
-            // NOTE: The link now points to watch.html and passes the video ID!
             const videoHTML = `
                 <a href="watch.html?id=${video.id}" class="video-link">
                     <div class="video-card">
@@ -62,6 +71,33 @@
                 </a>
             `;
             videoFeed.innerHTML += videoHTML;
+        });
+
+        // 2. THE LAZY LOADING MAGIC (Intersection Observer)
+        // Find all the videos we marked as 'lazy'
+        const lazyVideos = document.querySelectorAll('.lazy-video');
+
+        // Create the "watcher"
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // If the video just scrolled onto the screen...
+                if (entry.isIntersecting) {
+                    let video = entry.target;
+                    // Swap the fake 'data-src' into the real 'src' so it finally loads
+                    video.src = video.dataset.src;
+                    
+                    // Stop watching this video now that it's loaded
+                    observer.unobserve(video);
+                }
+            });
+        }, {
+            // Start loading slightly before it hits the screen so it looks seamless
+            rootMargin: "50px" 
+        });
+
+        // Tell the observer to start watching all our lazy videos
+        lazyVideos.forEach(video => {
+            observer.observe(video);
         });
     </script>
 </body>
