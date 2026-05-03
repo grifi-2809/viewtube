@@ -209,7 +209,7 @@ Curious, clumsy, belly slide, hey penguin, nice suit!`
         views: "70m views",
         time: "8 years ago",
         videoPath: "./videos/smallcat.mp4", 
-        thumbnail: "./thumbnails/cat.png", 
+        thumbnail: "./thumbnails/smallcat.png", 
         
         description: `#bbc
         Subscribe and 🔔 to the BBC 👉 https://bit.ly/BBCYouTubeSub
